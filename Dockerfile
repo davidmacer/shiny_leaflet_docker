@@ -18,7 +18,8 @@ apt-get clean
 # Shiny app 
 COPY . ./app
 # install renv & restore packages                       
-RUN Rscript -e 'install.packages(c("renv","leaflet","sf"))'
+RUN Rscript -e 'install.packages(c("renv","leaflet","remotes"))'
+RUN Rscript -e 'remotes::install_github("r-spatial/sf")'
 RUN Rscript -e 'renv::restore()'
 # remove install files                       
 RUN rm -rf /var/lib/apt/lists/*
