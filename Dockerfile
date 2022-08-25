@@ -18,8 +18,7 @@ apt-get clean
 # Shiny app 
 COPY . ./app
 # install renv & restore packages                       
-RUN Rscript -e 'install.packages("renv")'
-RUN Rscript -e 'install.packages("leaflet")'
+RUN Rscript -e 'install.packages(c("renv","leaflet","sf"))'
 RUN Rscript -e 'renv::restore()'
 # remove install files                       
 RUN rm -rf /var/lib/apt/lists/*
