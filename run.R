@@ -1,5 +1,6 @@
 library(shiny)
 library(leaflet)
+library(sf)
 
 port <- Sys.getenv('PORT')
 
