@@ -4,12 +4,17 @@ LABEL author="Tim M.Schendzielorz docker@timschendzielorz.com"
 # system libraries of general use                       
 # install debian packages                       
 RUN apt-get update -qq && apt-get -y --no-install-recommends install \ 
-libxml2-dev \
-libcairo2-dev \
-libpq-dev \ 
-libssh2-1-dev \
-libcurl4-openssl-dev \
-libssl-dev
+  libudunits2-dev \ 
+  libgdal-dev \ 
+  libgeos-dev \ 
+  libproj-dev \ 
+  libfontconfig1-dev \ 
+  libxml2-dev \ 
+  libcairo2-dev \ 
+  libpq-dev \ 
+  libssh2-1-dev \ 
+  libcurl4-openssl-dev \ 
+  libssl-dev
 # update system libraries
 RUN apt-get update && \ 
 apt-get upgrade -y && \  
@@ -18,8 +23,7 @@ apt-get clean
 # Shiny app 
 COPY . ./app
 # install renv & restore packages                       
-RUN Rscript -e 'install.packages(c("renv","leaflet","remotes"))'
-RUN Rscript -e 'remotes::install_github("r-spatial/sf")'
+RUN Rscript -e 'install.packages(c("renv","leaflet","sf"))'
 RUN Rscript -e 'renv::restore()'
 # remove install files                       
 RUN rm -rf /var/lib/apt/lists/*
