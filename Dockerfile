@@ -18,13 +18,16 @@ apt-get clean
 # Shiny app 
 COPY . ./app
 # install renv & restore packages                       
-RUN Rscript -e 'install.packages(c("renv","leaflet")'
+RUN Rscript -e 'install.packages("renv")'
+RUN Rscript -e 'install.packages("leaflet")'
 RUN Rscript -e 'renv::restore()'
 # remove install files                       
 RUN rm -rf /var/lib/apt/lists/*
-  # make all app files readable, gives rwe permisssion (solves issue when dev in Windows, but building in Ubuntu)                       RUN chmod -R 755 /app
-  # expose port (for local deployment only)                       EXPOSE 3838
-  # set non-root                       
+# make all app files readable, gives rwe permisssion (solves issue when dev in Windows, but building in Ubuntu)
+RUN chmod -R 755 /app
+# expose port (for local deployment only)
+EXPOSE 3838
+# set non-root                       
 RUN useradd shiny_user
 USER shiny_user
 # run app on container start (use heroku port variable for deployment)
