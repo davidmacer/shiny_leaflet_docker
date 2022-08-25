@@ -1,3 +1,5 @@
+library(shiny)
+
 ui <- fluidPage(
   leafletOutput("mymap"),
   p(),
