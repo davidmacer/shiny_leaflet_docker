@@ -6,9 +6,8 @@ server <- function(input, output, session) {
   
   output$mymap <- renderLeaflet({
     leaflet() %>%
-      addProviderTiles(providers$Stamen.TonerLite,
-                       options = providerTileOptions(noWrap = TRUE)
-      ) %>%
-      addMarkers(data = points())
+      setView(-92.816, 16.125, 8) %>%
+      addTiles() %>%
+      addPolygons(data = datos)
   })
 }
