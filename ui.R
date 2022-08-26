@@ -1,7 +1,7 @@
 library(shiny)
+library(leaflet)
+library(sf)
 
 ui <- fluidPage(
-  leafletOutput("mymap"),
-  p(),
-  actionButton("recalc", "New points")
+  leafletOutput("mymap")
 )
